@@ -1,7 +1,7 @@
 # Variables
 V -> V1V2 | A-Z | a-z | _
 V1 -> A-Z | a-z | _
-V2 -> V2V2 | A-Z | a-z | 0-9
+V2 -> V2V2 | A-Z | a-z | 0-9 | _
 
 # Integers
 I -> II1 | 0-9
@@ -29,22 +29,47 @@ S6 -> S3S5 | '
 #   1. Unary operators (prefix)
 O1 -> + | - | ~ | !
 
-#   delete, void, typeof (belum)
-
 #   2. Binary operators
-O2 -> + | - | / | * | % | in | instanceof | < | > | & | '|' | ^
+O2 -> + | - | / | * | % | < | > | & | '|' | ^
 
 #   3. Ternary operators
 O3 -> ?
 
-#   4. Assignment
-O4 -> =
-
 # Expressions
+# Expression -> variable / int / float / string / bool (literal)
 E -> V1V2 | A-Z | a-z | _ | II1 | 0-9 | IF1 | S1S2 | S5S6 | true | false
-E -> E1E2
-E1 -> (
-E2 -> E3E4 | )
+
+E1 -> V1V2 | A-Z | a-z | _ | II1 | 0-9 | IF1 | S1S2 | S5S6 | true | false
+
+# Expression -> (Expression)
+E -> E2E3
+E2 -> (
+E3 -> EE4 | )
+E4 -> )
+
+# Unary -> Operator + Operator + ... + Operand (expression)
+U -> O1U2
+U2 -> O1U2 | E (belum CNF)
+
+# Binary -> Operand + Operator + Operand + Operator + ... + Operand 
+B -> EB1
+
+# Ternary
+
+# Assignment -> X = Y = Z = ... (variable) = literal
+A -> E5E1
+E5 -> E5E5 | VE6
+E6 -> =
+
+
+
+
+
+
+
+
+
+
 
 
 
