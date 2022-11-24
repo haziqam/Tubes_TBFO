@@ -7,8 +7,8 @@ V2 -> V2V2 | A-Z | a-z | 0-9 | _
 I -> II1 | 0-9
 I1 -> 0-9
 
-# Floats
-F -> IF1
+# Floats (numeric)
+F -> IF1 | F2I
 F1 -> F2I
 F2 -> .
 
@@ -16,13 +16,12 @@ F2 -> .
 B -> true | false
 
 # Strings/char
-S -> S1S2 | S5S6
+S -> S1S2 | S4S5
 S1 -> "
 S2 -> S3S1 | "
-S3 -> S3S4 | ASCII (any)
-S4 -> ASCII (any)
-S5 -> '
-S6 -> S3S5 | '
+S3 -> S3S3 | ASCII (any)
+S4 -> '
+S5 -> S3S4 | '
 
 
 # Operators
@@ -31,6 +30,7 @@ O1 -> + | - | ~ | !
 
 #   2. Binary operators
 O2 -> + | - | / | * | % | < | > | & | '|' | ^
+# belum dihandle: >=, <=, +=, -=, ==, /=, ||, &&, dll
 
 #   3. Ternary operators
 O3 -> ?
@@ -51,8 +51,18 @@ E4 -> )
 U -> O1U2
 U2 -> O1U2 | E (belum CNF)
 
+# Special case; increment and decrement (e.g. var++, --var)
+U -> PU3 | MU4 | VU5 | VU6
+U3 -> PV
+P -> +
+U4 -> MV
+M -> -
+U5 -> PP
+U5 -> MM
+
 # Binary -> Operand + Operator + Operand + Operator + ... + Operand 
 B -> EB1
+B1 -> O2B | O2E
 
 # Ternary
 
