@@ -6,20 +6,29 @@ reserved = []
 def fileToLines(fileName) :
     buffer = []
     ctr = 0
-    f = open(fileName, 'r')
-    line = f.readline()
-    while (line) :
-        buffer.append(line)
-        ctr += 1
+    try :
+        f = open(fileName, 'r')
         line = f.readline()
-    return buffer
+        while (line) :
+            buffer.append(line)
+            ctr += 1
+            line = f.readline()
+        return buffer
+    except FileNotFoundError:
+        print("\nFile Tidak Ditemukan!\n")
+        return False
 
 def convertLineToList(line) :
     buffer = []
     word = ""
     for char in line :
         if (char not in ignore) :
-            word += char
+            if (char != '{' and char != '}') :
+                word += char
+            else :
+                buffer.append(word)
+                word = ""
+                buffer.append(char)
         else :
             if (len(word) == 0) :
                 continue
@@ -28,5 +37,12 @@ def convertLineToList(line) :
                 word = ""
     return buffer
 
+
+
 if __name__ == "__main__" :
-    print(convertLineToList("\t Hello    semuanya!\n"))
+    #text = fileToLines("inputAcc.js")
+    w = "function foo(x) { \n {x = 1} \n}"
+    print(w)
+    print(convertLineToList(w))
+
+    #["function foo(x)", "{", "{", "x = 1", "}", "}"]

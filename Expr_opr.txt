@@ -15,6 +15,9 @@ F2 -> .
 # Booleans
 B -> true | false
 
+# Null
+N -> null
+
 # Strings/char
 S -> S1S2 | S4S5
 S1 -> "
@@ -25,21 +28,20 @@ S5 -> S3S4 | '
 
 
 # Operators
-#   1. Unary operators (prefix)
-O1 -> + | - | ~ | !
+# Unary operators (prefix)
+O1 -> + | - | ~ | ! | delete
 
-#   2. Binary operators
+# Binary operators
 O2 -> + | - | / | * | % | < | > | & | '|' | ^
-# belum dihandle: >=, <=, +=, -=, ==, /=, ||, &&, dll
 
-#   3. Ternary operators
+# Ternary operators
 O3 -> ?
 
 # Expressions
-# Expression -> variable / int / float / string / bool (literal)
-E -> V1V2 | A-Z | a-z | _ | II1 | 0-9 | IF1 | S1S2 | S5S6 | true | false
+# Expression -> variable / int / float / string / bool (literal) / dll (belum semua)
 
-E1 -> V1V2 | A-Z | a-z | _ | II1 | 0-9 | IF1 | S1S2 | S5S6 | true | false
+E -> V1V2 | A-Z | a-z | _ | II1 | 0-9 | IF1 | S1S2 | S5S6 | true | false | null  
+E1 -> V1V2 | A-Z | a-z | _ | II1 | 0-9 | IF1 | S1S2 | S5S6 | true | false | null
 
 # Expression -> (Expression)
 E -> E2E3
@@ -64,14 +66,46 @@ U5 -> MM
 B -> EB1
 B1 -> O2B | O2E
 
-# Ternary
+# >=, <=
+B -> EB2
+B2 -> B3B4
+B3 -> > | < 
+B4 -> B5E
+B5 -> =
+
+# ||, &&, >>, <<, **, ==
+B -> EB6
+B6 -> B7E
+B7 -> B8B8 | B9B9 | B10B10 | B11B11 | B12B12
+B8 -> |
+B9 -> &
+B10 -> >
+B11 -> <
+B12 -> *
+
+#  ===
+B -> EB13
+B13 -> B5B14
+B14 -> B5B4
+
+
+# Ternary -> condition ? exprIfTrue : exprIfFalse
+T -> ET1
+T1 -> O3T2
+T2 -> ET3
+T3 -> T4E
+T4 -> :
 
 # Assignment -> X = Y = Z = ... (variable) = literal
-A -> E5E1
-E5 -> E5E5 | VE6
-E6 -> =
+A -> A5E1
+A5 -> A5A5 | VA6
+A6 -> =
 
-
+# +=, -=, *=, /=, %=, |=, &=, ^=, >>=, <<=, ||=, &&=, **=
+A -> A7A1
+A7 -> A7A7 | VA8
+A8 -> A9A6
+A9 -> + | - | / | * | % | & | '|' | ^ | B8B8 | B9B9 | B10B10 | B11B11 | B12B12
 
 
 
