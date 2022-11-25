@@ -2,7 +2,6 @@
 uppercase=[[chr(ord('A')+i)] for i in range(26)]
 lowercase=[[chr(ord('a')+i)] for i in range(26)]
 integer=[[chr(ord('0')+i)] for i in range(10)]
-nonzero=[[chr(ord('1')+i)] for i in range(9)]
 binary=[["+"],["-"],["*"],["/"],["%"],["|"],["^"],["&"]]
 boolop=[["and"],["or"],["is"],["in"],["<"],[">"]]
 unary=[["Not"],["+"],["-"],["~"]]
@@ -16,15 +15,15 @@ R = {
     "SLASH": [["/"]],
     "STAR": [["*"]],
 
-    "START": [["STMT","START1"],["FCALL","START1"],["E","START1"],["COMNT","START"],["CURL1","BLK2"],["THR","E"],["IF","IF2"],["SWTC","SWTC2"],["TRY","TRY2"],["DCLR","V"],["FOR","FOR2"],["WHL","WHL2"],["FU1","FU2"],["AF1","AF2"],["AF3","AF10"],["V","AF10"],["V1","V2"],["A-Z"],["a-z"],["_"],["II1"],["0-9"],["IF1"],["S1S2"],["S5S6"],["true"],["false"],["null"],["E2","E3"],["O1","U2"],["P","U3"],["M","U4"],["V","U5"],["V","U6"],["E","B1"],["E","B2"],["E","B6"],["E","B13"],["E","T1"],["A5","E1"],["A7","A1"],["COMNT"],["NL","START"],["SCLN", "START"],["START","NL"],["START","SCLN"],["\n"],[";"]],
+    "START": [["STMT","START1"],["FCALL","START1"],["E","START1"],["COMNT","START"],["CURL1","BLK2"],["THR","E"],["IF","IF2"],["SWTC","SWTC2"],["TRY","TRY2"],["DCLR","V"],["FOR","FOR2"],["WHL","WHL2"],["FU1","FU2"],["AF1","AF2"],["AF3","AF10"],["V","AF10"],["V1","V2"],["_"],["I","I1"],["I","F1"],["S1","S2"],["S5S6"],["true"],["false"],["null"],["E2","E3"],["O1","U2"],["P","U3"],["M","U4"],["V","U5"],["V","U6"],["E","B1"],["E","B2"],["E","B6"],["E","B13"],["E","T1"],["A5","E1"],["A7","A1"],["SLASH","COMNT1"],["SLASH","COMNT3"],["NL","START"],["SCLN", "START"],["START","NL"],["START","SCLN"],["\n"],[";"]]+uppercase+lowercase+integer,
 
     "START1": [["COMNT","START1"],["NL","START"],["SCLN","START"]],
 
-    "STARTSW": [["STMT","STARTSW1"],["FCALL","STARTSW1"],["E","STARTSW1"],["COMNT","STARTSW"],["CURL1","BLKSW2"],["THR","E"],["IF","IFSW2"],["SWTC","SWTC2"],["TRY","TRYSW2"],["VAR","V"],["VAR","A"],["LET","V"],["LET","A"],["CONST","V"],["CONST","A"],["FOR","FOR2"],["WHL","WHL2"],["break"],["FU1","FU2"],["AF1","AF2"],["AF3","AF10"],["V","AF10"],["V1","V2"],["A-Z"],["a-z"],["_"],["II1"],["0-9"],["IF1"],["S1S2"],["S5S6"],["true"],["false"],["null"],["E2","E3"],["O1","U2"],["P","U3"],["M","U4"],["V","U5"],["V","U6"],["E","B1"],["E","B2"],["E","B6"],["E","B13"],["E","T1"],["A5","E1"],["A7","A1"],["COMNT"],["NL","STARTSW"],["SCLN", "STARTSW"],["STARTSW","NL"],["STARTSW","SCLN"],["\n"],[";"]],
+    "STARTSW": [["STMT","STARTSW1"],["FCALL","STARTSW1"],["E","STARTSW1"],["COMNT","STARTSW"],["CURL1","BLKSW2"],["THR","E"],["IF","IFSW2"],["SWTC","SWTC2"],["TRY","TRYSW2"],["VAR","V"],["VAR","A"],["LET","V"],["LET","A"],["CONST","V"],["CONST","A"],["FOR","FOR2"],["WHL","WHL2"],["break"],["FU1","FU2"],["AF1","AF2"],["AF3","AF10"],["V","AF10"],["V1","V2"],["_"],["I","I1"],["I","F1"],["S1","S2"],["S5","S6"],["true"],["false"],["null"],["E2","E3"],["O1","U2"],["P","U3"],["M","U4"],["V","U5"],["V","U6"],["E","B1"],["E","B2"],["E","B6"],["E","B13"],["E","T1"],["A5","E1"],["A7","A1"],["SLASH","COMNT1"],["SLASH","COMNT3"],["NL","STARTSW"],["SCLN", "STARTSW"],["STARTSW","NL"],["STARTSW","SCLN"],["\n"],[";"]]+uppercase+lowercase+integer,
 
     "STARTSW1": [["COMNT","STARTSW1"],["NL","STARTSW"],["SCLN","STARTSW"]],
 
-    "STARTL": [["STMT","STARTL1"],["FCALL","STARTL1"],["E","STARTL1"],["COMNT","STARTL"],["CURL1","BLKL2"],["THR","E"],["IF","IFL2"],["SWTCL","SWTCL2"],["TRY","TRYL2"],["VAR","V"],["VAR","A"],["LET","V"],["LET","A"],["CONST","V"],["CONST","A"],["FOR","FOR2"],["WHL","WHL2"],["break"],["continue"],["FU1","FU2"],["AF1","AF2"],["AF3","AF10"],["V","AF10"],["V1","V2"],["A-Z"],["a-z"],["_"],["II1"],["0-9"],["IF1"],["S1S2"],["S5S6"],["true"],["false"],["null"],["E2","E3"],["O1","U2"],["P","U3"],["M","U4"],["V","U5"],["V","U6"],["E","B1"],["E","B2"],["E","B6"],["E","B13"],["E","T1"],["A5","E1"],["A7","A1"],["COMNT"],["NL","STARTL"],["SCLN", "STARTL"],["STARTL","NL"],["STARTL","SCLN"],["\n"],[";"]],
+    "STARTL": [["STMT","STARTL1"],["FCALL","STARTL1"],["E","STARTL1"],["COMNT","STARTL"],["CURL1","BLKL2"],["THR","E"],["IF","IFL2"],["SWTCL","SWTCL2"],["TRY","TRYL2"],["VAR","V"],["VAR","A"],["LET","V"],["LET","A"],["CONST","V"],["CONST","A"],["FOR","FOR2"],["WHL","WHL2"],["break"],["continue"],["FU1","FU2"],["AF1","AF2"],["AF3","AF10"],["V","AF10"],["V1","V2"],["_"],["I","I1"],["I","F1"],["S1","S2"],["S5","S6"],["true"],["false"],["null"],["E2","E3"],["O1","U2"],["P","U3"],["M","U4"],["V","U5"],["V","U6"],["E","B1"],["E","B2"],["E","B6"],["E","B13"],["E","T1"],["A5","E1"],["A7","A1"],["SLASH","COMNT1"],["SLASH","COMNT3"],["NL","STARTL"],["SCLN", "STARTL"],["STARTL","NL"],["STARTL","SCLN"],["\n"],[";"]]+uppercase+lowercase+integer,
 
     "STARTL1": [["COMNT","STARTL1"],["NL","STARTL"],["SCLN","STARTL"]],
 
@@ -256,6 +255,7 @@ R = {
 
     # Function Call
     "FCALL": [["FU1","FU2"],["AF1","AF2"],["AF3","AF10"],["V","AF10"]],
+    "RTN1": [["RTN","E"]],
 
     # Extra symbols
     "CMA": [[","]],
@@ -286,11 +286,11 @@ R = {
     "FOR": [["for"]],
 
     # Statement call    
-    "STMT": [["CURL1","BLK2"],["THR","E"],["IF","IF2"],["SWTC","SWTC2"],["TRY","TRY2"],["VAR","V"],["VAR","A"],["LET","V"],["LET","A"],["CONST","V"],["CONST","A"],["FOR","FOR2"],["WHL","WHL2"]],
+    "STMT": [["CURL1","BLK2"],["THR","E"],["IF","IF2"],["SWTC","SWTC2"],["TRY","TRY2"],["VAR","V"],["VAR","A"],["LET","V"],["LET","A"],["CONST","V"],["CONST","A"],["FOR","FOR2"],["WHL","WHL2"],["return"],["RTN","E"]],
 
-    "STMTSW": [["CURL1","BLKSW2"],["THR","E"],["IF","IFSW2"],["SWTC","SWTC2"],["TRY","TRYSW2"],["VAR","V"],["VAR","A"],["LET","V"],["LET","A"],["CONST","V"],["CONST","A"],["FOR","FOR2"],["WHL","WHL2"],["break"]],
+    "STMTSW": [["CURL1","BLKSW2"],["THR","E"],["IF","IFSW2"],["SWTC","SWTC2"],["TRY","TRYSW2"],["VAR","V"],["VAR","A"],["LET","V"],["LET","A"],["CONST","V"],["CONST","A"],["FOR","FOR2"],["WHL","WHL2"],["return"],["RTN","E"],["break"]],
 
-    "STMTL": [["CURL1","BLKL2"],["THR","E"],["IF","IFL2"],["SWTCL","SWTCL2"],["TRY","TRYL2"],["VAR","V"],["VAR","A"],["LET","V"],["LET","A"],["CONST","V"],["CONST","A"],["FOR","FOR2"],["WHL","WHL2"],["break"],["continue"]],
+    "STMTL": [["CURL1","BLKL2"],["THR","E"],["IF","IFL2"],["SWTCL","SWTCL2"],["TRY","TRYL2"],["VAR","V"],["VAR","A"],["LET","V"],["LET","A"],["CONST","V"],["CONST","A"],["FOR","FOR2"],["WHL","WHL2"],["break"],["return"],["RTN","E"],["continue"]],
 
     # Blocks
     "BLK": [["CURL1","BLK2"],["CURL1","CURL2"]],
