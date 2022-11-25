@@ -32,13 +32,13 @@ def CYKParse(w):
                         if((len(deriv) == 2) and (deriv[0] in Tab[j][k]) and (deriv[1] in Tab[j+1+k][i-k-1])):
                             Tab[j][i].add(l)
 
-    for i in range (n) :
-        for j in range (n-i) :
-            if Tab[i][j] == set([]) :
-                print("--", end = '  ')
-            else :
-                print(Tab[i][j], end = '  ')
-        print("\n  #######\n")
+    # for i in range (n) :
+    #     for j in range (n-i) :
+    #         if Tab[i][j] == set([]) :
+    #             print("--", end = '  ')
+    #         else :
+    #             print(Tab[i][j], end = '  ')
+    #     print("\n  #######\n")
     # Return variabel yang menghasilkan w; V *-> w
     return Tab[0][n-1]
 
