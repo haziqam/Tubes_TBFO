@@ -1,12 +1,11 @@
-# belum selesai
+import FA
 
 #ignore = ["\t", " "]
 reserved = ["break", "const", "case", "case", "catch", "class", "continue", "default", "delete", "else", "false", "finally", "for", "function", "if", "let", "null", "return", "switch", "throw", "try", "true", "var", "while"]
 
 def fileToLines(fileName) :
     buffer = []
-    # currentWord = ""
-    tempCharList = []
+    
     try :
         f = open(fileName, 'r')
         line = f.readline()
@@ -18,10 +17,35 @@ def fileToLines(fileName) :
                     if len(word) == 1 :
                         buffer.append(word)
                     else :
+                        currentWord = ""
                         for char in word :
-                            tempCharList.append(char)
-                        buffer.append(tempCharList)
-                        tempCharList = []
+                            if (char in (FA.nextChar)) :
+                                currentWord += char
+                            else :
+                                if (len(currentWord) != 0) :
+                                    if currentWord in reserved :
+                                        buffer.append(currentWord)
+                                    else :
+                                        if (FA.variableFA(currentWord)) :
+                                            buffer.append(["_","_"])
+                                        elif (FA.numericFA(currentWord)) :
+                                            buffer.append(["0","0"])
+                                        else :
+                                            return False
+                        
+                                    currentWord = ""
+                                buffer.append(char)
+                        
+                        if (len(currentWord) != 0) :
+                            if currentWord in reserved :
+                                buffer.append(currentWord)
+                            else :
+                                if (FA.variableFA(currentWord)) :
+                                    buffer.append(["_","_"])
+                                elif (FA.numericFA(currentWord)) :
+                                    buffer.append(["0","0"])
+                                else :
+                                    return False
             buffer.append('\n')
             line = f.readline()
         return buffer
@@ -51,7 +75,7 @@ def fileToLines(fileName) :
 
 
 if __name__ == "__main__" :
-    text = fileToLines("test.js")
+    text = fileToLines("inputAcc.js")
     # w = "function foo(x) { \n {x = 1} \n}"
     # print(w)
     # print(convertLineToList(w))
