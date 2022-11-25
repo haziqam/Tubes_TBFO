@@ -10,6 +10,130 @@ boolean=[["True"],["False"],["None"]]
 
 # Rules of the grammar
 R = {
+    # Variables
+    "V": [["V1","V2"]]+uppercase+lowercase+[['_']],
+    "V1": uppercase+lowercase+[['_']],
+    "V2": [["V2","V2"]]+uppercase+lowercase+integer+[['_']],
+
+    # Integers
+    "I": [["I", "I1"]]+integer,
+    "I1": integer,
+
+    # Floats (numeric)
+    "F": [["I", "F1"], ["F2", "I"]],
+    "F1": [["F2", "I"]],
+    "F2": [["."]],
+
+    # Booleans
+    "B": [["true"], ["false"]],
+
+    # Null
+    "N": [["null"]],
+
+    # Strings/char
+    "S": [["S1", "S2"], ["S4", "S5"]],
+    "S1": [['"']],
+    "S2": [["S3", "S1"], ['"']],
+    "S3": [["S3", "S3"], [["V2","V2"]]]+uppercase+lowercase+integer+[['_']],     # harusnya ASCII
+    "S4": [["'"]],
+    "S5": [["S3", "S4"], ["'"]],
+
+    # Operators
+    # Unary operators (prefix)
+    "O1": [["+"], ["-"], ["~"], ["!"], ["delete"]],
+
+    # Binary operators
+    "O2": [["+"], ["-"], ["/"], ["*"], ["%"], ["<"], [">"], ["&"], ["|"], ["^"]],
+
+    # Ternary operators
+    "O3": [["?"]],
+
+    # Expressions
+    "E": [["V1", "V2"]]+uppercase+lowercase+integer+[['_'], ["I", "I1"], ["I", "F1"], ["S1", "S2"], ["S5", "S6"], ["true"], ["false"],
+        ["null"], ["E2", "E3"], ["O1", "U2"], ["P", "U3"], ["M", "U4"], ["V", "U5"], ["V", "U6"], ["E", "B1"], ["E", "B2"], ["E", "B6"],
+        ["E", "B13"], ["E", "T1"], ["A5", "E1"], ["A7", "A1"]],
+
+    # Expression: variable / int / float / string / bool (literal) 
+    # E: V1 V2 | A-Z | a-z | _ | II1 | 0-9 | IF1 | S1S2 | S5S6 | true | false | null  
+    "E1": [["V1", "V2"]]+uppercase+lowercase+integer+[['_'], ["I", "I1"], ["I", "F1"], ["S1", "S2"], ["S5", "S6"], ["true"], ["false"], ["null"]],
+
+    # Expression: (Expression)
+    # E: E2 E3
+    "E2": [["("]],
+    "E3": [["E", "E4"], [[")"]]],
+    "E4": [[")"]],
+
+    # Expressions: (semua operasi yg ada di bawah)
+    # E: O1 U2 | P U3 | M U4 | V U5 | V U6 | E B1 | E B2 | E B6 | E B13 | E T1 | A5 E1 | A7 A1
+
+    # Unary
+    "U": [["O1", "U2"], ["P", "U3"], ["M", "U4"], ["V", "U5"], ["V", "U6"]],
+
+    # Unary: Operator + Operator + ... + Operand (expression)
+    # U: O1 U2
+    "U2": [["O1", "U2"]["V1", "V2"]]+uppercase+lowercase+integer+[['_'], ["I", "I1"], ["I", "F1"], ["S1", "S2"], ["S5", "S6"], ["true"], ["false"],
+        ["null"], ["E2", "E3"], ["O1", "U2"], ["P", "U3"], ["M", "U4"], ["V", "U5"], ["V", "U6"], ["E", "B1"], ["E", "B2"], ["E", "B6"], ["E", "B13"],
+        ["E", "T1"], ["A5", "E1"], ["A7", "A1"]],
+
+    # Special case; increment and decrement (e.g. var++, --var)
+    # U: P U3 | M U4 | V U5 | V U6
+    "U3": [["P", "V"]],
+    "P": [["+"]],
+    "U4": ["M", "V"],
+    "M": [["-"]],
+    "U5": [["P", "P"]],
+    "U5": [["M", "M"]],
+
+    # Binary 
+    "B": [["E", "B1"], ["E", "B2"], ["E", "B6"], ["E", "B13"]],
+
+    # Binary: Operand + Operator + Operand + Operator + ... + Operand 
+    # B: E B1
+    "B1": [["O2", "B"], ["O2", "E"]],
+
+    # >=, <=
+    # B: E B2
+    "B2": [["B3", "B4"]],
+    "B3": [[">"], ["<"]], 
+    "B4": [["B5", "E"]],
+    "B5": [["="]],
+
+    # ||, &&, >>, <<, **, ==
+    # B: E B6
+    "B6": [["B7", "E"]],
+    "B7": [["B8", "B8"], ["B9", "B9"], ["B10", "B10"], ["B11", "B11"], ["B12", "B12"]],
+    "B8": [["|"]],
+    "B9": [["&"]],
+    "B10": [[">"]],
+    "B11": [["<"]],
+    "B12": [["*"]],
+
+    #  ===
+    # B: E B13
+    "B13": [["B5", "B14"]],
+    "B14": [["B5", "B4"]],
+
+    # Ternary: condition ? exprIfTrue : exprIfFalse
+    "T": [["E", "T1"]],
+    "T1": [["O3", "T2"]],
+    "T2": [["E", "T3"]],
+    "T3": [["T4", "E"]],
+    "T4": [[":"]],
+
+    # Assignment 
+    "A": [["A5", "E1"], ["A7", "A1"]],
+
+    # Assignment: X = Y = Z = ... (variable) = literal
+    # A: A5 E1
+    "A5": [["A5", "A5"], ["V", "A6"]],
+    "A6": [["="]],
+
+    # +=, -=, *=, /=, %=, |=, &=, ^=, >>=, <<=, ||=, &&=, **=
+    # A: A7 A1
+    "A7": [["A7", "A7"], ["V", "A8"]],
+    "A8": [["A9", "A6"]],
+    "A9": [["+"], ["-"], ["/"], ["*"], ["%"], ["&"], ["|"], ["^"], ["B8", "B8"], ["B9", "B9"], ["B10", "B10"], ["B11", "B11"], ["B12", "B12"]],
+
     # basic function
     "FU": [["FU1", "FU2"]],
     "FU1": [["function"]],
