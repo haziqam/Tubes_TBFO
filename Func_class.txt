@@ -12,7 +12,7 @@ FU7 -> empty | VFU8 | V1V2 | DPFU8 | DP1V | DP1I | DP1S | A-Z | a-z | _
 FU8 -> FU9FU7
 FU9 -> ,
 FU10 -> RPFU11
-    FU11 -> FU12E
+FU11 -> FU12STMTSW
 FU12 -> )
 
 # Arrow function
@@ -26,7 +26,7 @@ AF6 -> empty | VAF7 | V1V2 | DPAF7 | DP1V | DP1I | DP1S | A-Z | a-z | _
 AF7 -> AF8AF6
 AF8 -> ,
 AF9 -> )
-    AF10 -> AF11E
+AF10 -> AF11E | AF11STMTSW
 AF11 -> =>
 
 # Default params
@@ -47,7 +47,7 @@ CF3 -> VB5
 GE -> GE1GE2 | GE1GE3
 GE1 -> get
 GE2 -> VGE3 | EGE3
-    GE3 -> GE4E
+GE3 -> GE4STMTSW
 GE4 -> GE5GE6
 GE5 -> (
 GE6 -> )
@@ -56,7 +56,7 @@ GE6 -> )
 SE -> SE1SE2 | SE1SE3
 SE1 -> set
 SE2 -> VSE3 | ESE3
-    SE3 -> SE4E
+SE3 -> SE4STMTSW
 SE4 -> SE5SE6
 SE5 -> SE7V
 SE6 -> )
@@ -69,9 +69,9 @@ SE7 -> (
 # Class -> class variable {expression}
 CL -> CL1CL2
 CL1 -> class
-    CL2 -> VE
+CL2 -> VSTMTSW
 
-# Constructor
+# Constructor -> CO1CO2 tambahin ke DLCR
 CO -> CO1CO2
 CO1 -> construtor
 CO2 -> CO3CO4
@@ -80,5 +80,5 @@ CO4 -> CO5CO8
 CO5 -> empty | VCO6 | V1V2 | DPCO6 | DP1V | DP1I | DP1S | A-Z | a-z | _
 CO6 -> CO7CO5
 CO7 -> ,
-    CO8 -> CO9E
+CO8 -> CO9STMTSW
 CO9 -> )
