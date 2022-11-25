@@ -38,8 +38,7 @@ O2 -> + | - | / | * | % | < | > | & | '|' | ^
 O3 -> ?
 
 # Expressions
-# Expression -> variable / int / float / string / bool (literal) / dll (belum semua)
-
+# Expression -> variable / int / float / string / bool (literal) 
 E -> V1V2 | A-Z | a-z | _ | II1 | 0-9 | IF1 | S1S2 | S5S6 | true | false | null  
 E1 -> V1V2 | A-Z | a-z | _ | II1 | 0-9 | IF1 | S1S2 | S5S6 | true | false | null
 
@@ -48,6 +47,9 @@ E -> E2E3
 E2 -> (
 E3 -> EE4 | )
 E4 -> )
+
+# Expressions -> (semua operasi yg ada di bawah)
+E -> O1U2 | PU3 | MU4 | VU5 | VU6 | EB1 | EB2 | EB6 | EB13 | ET1 | A5E1 | A7A1
 
 # Unary -> Operator + Operator + ... + Operand (expression)
 U -> O1U2
