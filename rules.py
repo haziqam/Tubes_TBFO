@@ -10,6 +10,32 @@ boolean=[["True"],["False"],["None"]]
 
 # Rules of the grammar
 R = {
+
+    "NL": [["\n"]],
+
+    "SLASH": [["/"]],
+    "STAR": [["*"]],
+
+    "START": [["STMT","START1"],["FCALL","START1"],["E","START1"],["COMNT","START"],["CURL1","BLK2"],["THR","E"],["IF","IF2"],["SWTC","SWTC2"],["TRY","TRY2"],["DCLR","V"],["FOR","FOR2"],["WHL","WHL2"],["FU1","FU2"],["AF1","AF2"],["AF3","AF10"],["V","AF10"],["V1","V2"],["A-Z"],["a-z"],["_"],["II1"],["0-9"],["IF1"],["S1S2"],["S5S6"],["true"],["false"],["null"],["E2","E3"],["O1","U2"],["P","U3"],["M","U4"],["V","U5"],["V","U6"],["E","B1"],["E","B2"],["E","B6"],["E","B13"],["E","T1"],["A5","E1"],["A7","A1"],["COMNT"]],
+
+    "START1": [["COMNT","START1"],["NL","START"],["SCLN","START"]],
+
+    "STARTSW": [["STMT","STARTSW1"],["FCALL","STARTSW1"],["E","STARTSW1"],["COMNT","STARTSW"],["CURL1","BLKSW2"],["THR","E"],["IF","IFSW2"],["SWTC","SWTC2"],["TRY","TRYSW2"],["VAR","V"],["VAR","A"],["LET","V"],["LET","A"],["CONST","V"],["CONST","A"],["FOR","FOR2"],["WHL","WHL2"],["break"],["FU1","FU2"],["AF1","AF2"],["AF3","AF10"],["V","AF10"],["V1","V2"],["A-Z"],["a-z"],["_"],["II1"],["0-9"],["IF1"],["S1S2"],["S5S6"],["true"],["false"],["null"],["E2","E3"],["O1","U2"],["P","U3"],["M","U4"],["V","U5"],["V","U6"],["E","B1"],["E","B2"],["E","B6"],["E","B13"],["E","T1"],["A5","E1"],["A7","A1"],["COMNT"]],
+
+    "STARTSW1": [["COMNT","STARTSW1"],["NL","STARTSW"],["SCLN","STARTSW"]],
+
+    "STARTL": [["STMT","STARTL1"],["FCALL","STARTL1"],["E","STARTL1"],["COMNT","STARTL"],["CURL1","BLKL2"],["THR","E"],["IF","IFL2"],["SWTCL","SWTCL2"],["TRY","TRYL2"],["VAR","V"],["VAR","A"],["LET","V"],["LET","A"],["CONST","V"],["CONST","A"],["FOR","FOR2"],["WHL","WHL2"],["break"],["continue"],["FU1","FU2"],["AF1","AF2"],["AF3","AF10"],["V","AF10"],["V1","V2"],["A-Z"],["a-z"],["_"],["II1"],["0-9"],["IF1"],["S1S2"],["S5S6"],["true"],["false"],["null"],["E2","E3"],["O1","U2"],["P","U3"],["M","U4"],["V","U5"],["V","U6"],["E","B1"],["E","B2"],["E","B6"],["E","B13"],["E","T1"],["A5","E1"],["A7","A1"],["COMNT"]],
+
+    "STARTL1": [["COMNT","STARTL1"],["NL","STARTL"],["SCLN","STARTL"]],
+
+    "COMNT": [["SLASH","COMNT1"],["SLASH","COMNT3"]],
+    "COMNT1": [["SLASH","COMNT2"]],
+    "COMNT2": [["S3","NL"]],
+    "COMNT3": [["STAR","COMNT4"]],
+    "COMNT4": [["S3","COMNT5"]],
+    "COMNT5": [["STAR","SLASH"]],
+
+
     # Variables
     "V": [["V1","V2"]]+uppercase+lowercase+[['_']],
     "V1": uppercase+lowercase+[['_']],

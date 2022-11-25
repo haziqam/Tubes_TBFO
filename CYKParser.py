@@ -1,9 +1,10 @@
-Prod = {
-    "B" : [["E", "B1"]],
-	"B1" : [["O2", "B"], ["O2", "E"]],
-	"E" : [["1"], ["2"], ["3"]],
-	"O2" : [["+"], ["-"]]
-}
+import rules
+# Prod = {
+#     "B" : [["E", "B1"]],
+# 	"B1" : [["O2", "B"], ["O2", "E"]],
+# 	"E" : [["1"], ["2"], ["3"]],
+# 	"O2" : [["+"], ["-"]]
+# }
 
 def CYKParse(w):
     # n adalah banyak simbol terminal yang akan di-parse
@@ -15,10 +16,9 @@ def CYKParse(w):
     # isi baris paling bawah tabel CYK -> basis
     for i in range(n):
         if(isinstance(w[i], list)):
-            temp = len(w[i])
             Tab[i][0] = CYKParse(w[i])
         else:
-            for l, r in Prod.items():
+            for l, r in rules.R.items():
                 for deriv in r:
                     if((len(deriv) == 1) and (deriv[0] == w[i])):
                         Tab[i][0].add(l)    # terminal terdapat dalam produksi, tambahkan variabel produksi
@@ -27,7 +27,7 @@ def CYKParse(w):
     for i in range(1,n):
         for j in range(n-i):
             for k in range(i):
-                for l, r in Prod.items():
+                for l, r in rules.R.items():
                     for deriv in r:
                         if((len(deriv) == 2) and (deriv[0] in Tab[j][k]) and (deriv[1] in Tab[j+1+k][i-k-1])):
                             Tab[j][i].add(l)
