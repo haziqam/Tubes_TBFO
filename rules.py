@@ -196,7 +196,18 @@ R = {
     "SE6": [[")"]],
     "SE7": [["("]],
 
-    ### Class
+    # function usage
+    "FUS": [["FUS1", "FUS2"]],
+    "FUS1": [["V1","V2"]]+uppercase+lowercase+[['_']],
+    "FUS2": [["FUS3", "FUS4"]],
+    "FUS3": [["("]],
+    "FUS4": [["FUS5", "FUS8"], ["FUS5", "FUS9"]],
+    "FUS5": [["empty"], ["V", "FUS6"], ["V1", "V2"], ["DP", "FUS6"], ["DP1", "V"], ["DP1", "I"], ["DP1", "S"]]+uppercase+lowercase+[['_']],
+    "FUS6": [["FUS7", "FUS5"]],
+    "FUS7": [[","]],
+    "FUS8": [["RP", "FUS9"]],
+    "FUS9": [[")"]],
+
     # Class: class variable {expression}
     "CL": [["CL1", "CL2"]],
     "CL1": [["class"]],

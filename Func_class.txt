@@ -62,6 +62,17 @@ SE5 -> SE7V
 SE6 -> )
 SE7 -> (
 
+# function usage
+FUS -> FUS1FUS2
+FUS1 -> V1V2 | A-Z | a-z | _
+FUS2 -> FUS3FUS4
+FUS3 -> (
+FUS4 -> FUS5FUS8 | FUS5FUS9
+FUS5 -> empty | VFUS6 | V1V2 | DPFUS6 | DP1V | DP1I | DP1S | A-Z | a-z | _
+FUS6 -> FUS7FUS5
+FUS7 -> ,
+FUS8 -> RPFUS9
+FUS9 -> )
 
 
 ### Class
