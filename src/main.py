@@ -10,8 +10,6 @@ filename = args.namafile
 
 L = i_o.fileToList(filename)
 
-print(L)
-
 if(isinstance(L, list)):
     verdict = 'START' in CYK.CYKParse(L)
 else:
