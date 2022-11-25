@@ -1,0 +1,84 @@
+### Function
+
+# Basic function -> function functionName(params)
+FU -> FU1FU2
+FU1 -> function
+FU2 -> FU3FU4
+FU3 -> V1V2 | A-Z | a-z | _
+FU4 -> FU5FU6
+FU5 -> (
+FU6 -> FU7FU10 | FU7FU11
+FU7 -> empty | VFU8 | V1V2 | DPFU8 | DP1V | DP1I | DP1S | A-Z | a-z | _
+FU8 -> FU9FU7
+FU9 -> ,
+FU10 -> RPFU11
+    FU11 -> FU12E
+FU12 -> )
+
+# Arrow function
+AF -> AF1AF2 | AF3AF10 | VAF10
+AF1 -> async
+AF2 -> AF3AF10 | VAF10
+AF3 -> AF4AF5
+AF4 -> (
+AF5 -> AF6AF9
+AF6 -> empty | VAF7 | V1V2 | DPAF7 | DP1V | DP1I | DP1S | A-Z | a-z | _
+AF7 -> AF8AF6
+AF8 -> ,
+AF9 -> )
+    AF10 -> AF11E
+AF11 -> =>
+
+# Default params
+DP -> DP1V | DP1I | DP1S
+DP1 -> VB5
+
+# Rest params
+RP -> RP1V
+RP1 -> ...
+
+# const function
+CF -> CF1CF2
+CF1 -> const
+CF2 -> CF3AF
+CF3 -> VB5
+
+# Getter
+GE -> GE1GE2 | GE1GE3
+GE1 -> get
+GE2 -> VGE3 | EGE3
+    GE3 -> GE4E
+GE4 -> GE5GE6
+GE5 -> (
+GE6 -> )
+
+# Setter
+SE -> SE1SE2 | SE1SE3
+SE1 -> set
+SE2 -> VSE3 | ESE3
+    SE3 -> SE4E
+SE4 -> SE5SE6
+SE5 -> SE7V
+SE6 -> )
+SE7 -> (
+
+
+
+### Class
+
+# Class -> class variable {expression}
+CL -> CL1CL2
+CL1 -> class
+    CL2 -> VE
+
+# Constructor
+CO -> CO1CO2
+CO1 -> construtor
+CO2 -> CO3CO4
+CO3 -> (
+CO4 -> CO5CO8
+CO5 -> empty | VCO6 | V1V2 | DPCO6 | DP1V | DP1I | DP1S | A-Z | a-z | _
+CO6 -> CO7CO5
+CO7 -> ,
+    CO8 -> CO9E
+CO9 -> )
