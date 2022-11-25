@@ -3,7 +3,7 @@ import FA
 #ignore = ["\t", " "]
 reserved = ["break", "const", "case", "case", "catch", "class", "continue", "default", "delete", "else", "false", "finally", "for", "function", "if", "let", "null", "return", "switch", "throw", "try", "true", "var", "while"]
 
-def fileToLines(fileName) :
+def fileToList(fileName) :
     buffer = []
     
     try :
