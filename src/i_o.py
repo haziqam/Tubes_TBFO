@@ -75,7 +75,7 @@ def fileToList(fileName) :
 
 
 if __name__ == "__main__" :
-    text = fileToLines("inputAcc.js")
+    text = fileToList("inputAcc.js")
     # w = "function foo(x) { \n {x = 1} \n}"
     # print(w)
     # print(convertLineToList(w))

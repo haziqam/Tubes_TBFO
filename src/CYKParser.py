@@ -38,7 +38,7 @@ def CYKParse(w):
                 print("--", end = '  ')
             else :
                 print(Tab[i][j], end = '  ')
-        print()
+        print("\n  #######\n")
     # Return variabel yang menghasilkan w; V *-> w
     return Tab[0][n-1]
 
