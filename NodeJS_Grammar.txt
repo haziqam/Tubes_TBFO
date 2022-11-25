@@ -1,9 +1,79 @@
 NL -> '\n'
 
 START -> STMT START1 | F START1 | E START1 | COMNT START
-START -> STMT
-START -> F
-START -> E
+START -> CURL1 BLK2 | THR E | IF IF2 | SWTC SWTC2 | TRY TRY2 | DCLR V | FOR FOR2 | WHL WHL2
+START -> FU1 FU2 | AF1 AF2 | AF3 AF10 | V AF10
+START -> V1 V2 | A-Z | a-z | _ | II1 | 0-9 | IF1 | S1S2 | S5S6 | true | false | null | E2 E3 | O1 U2 | P U3 | M U4 | V U5 | V U6 | E B1 | E B2 | E B6 | E B13 | E T1 | A5 E1 | A7 A1
 START -> COMNT
 
 START1 -> COMNT START1 | NL START | SCLN START
+
+V -> V1 V2 | A-Z | a-z | _
+V1 -> A-Z | a-z | _
+V2 -> V2 V2 | A-Z | a-z | 0-9 | _
+
+I -> I I1 | 0-9
+I1 -> 0-9
+
+F -> I F1 | F2 I
+F1 -> F2 I
+F2 -> .
+
+B -> true | false
+
+N -> null
+
+S -> S1 S2 | S4 S5
+S1 -> "
+S2 -> S3 S1 | "
+S3 -> S3 S3 | ASCII (any)
+S4 -> '
+S5 -> S3 S4 | '
+
+O1 -> + | - | ~ | ! | delete
+O2 -> + | - | / | * | % | < | > | & | '|' | ^
+O3 -> ?
+
+E -> V1 V2 | A-Z | a-z | _ | II1 | 0-9 | IF1 | S1S2 | S5S6 | true | false | null | E2 E3 | O1 U2 | P U3 | M U4 | V U5 | V U6 | E B1 | E B2 | E B6 | E B13 | E T1 | A5 E1 | A7 A1 
+E1 -> V1 V2 | A-Z | a-z | _ | II1 | 0-9 | IF1 | S1S2 | S5S6 | true | false | null
+E2 -> (
+E3 -> E E4 | )
+E4 -> )
+
+U -> O1 U2 | P U3 | M U4 | V U5 | V U6
+U2 -> O1 U2 | V1 V2 | A-Z | a-z | _ | II1 | 0-9 | IF1 | S1S2 | S5S6 | true | false | null | E2 E3 | O1 U2 | P U3 | M U4 | V U5 | V U6 | E B1 | E B2 | E B6 | E B13 | E T1 | A5 E1 | A7 A1
+U3 -> P V
+P -> +
+U4 -> M V
+M -> -
+U5 -> P P
+U5 -> M M
+
+B -> E B1 | E B2 | E B6 | E B13
+B1 -> O2 B | O2 E
+B2 -> B3 B4
+B3 -> > | < 
+B4 -> B5 E
+B5 -> =
+B6 -> B7 E
+B7 -> B8 B8 | B9 B9 | B10 B10 | B11 B11 | B12 B12
+B8 -> |
+B9 -> &
+B10 -> >
+B11 -> <
+B12 -> *
+B13 -> B5 B14
+B14 -> B5 B4
+
+T -> E T1
+T1 -> O3 T2
+T2 -> E T3
+T3 -> T4 E
+T4 -> :
+ 
+A -> A5 E1 | A7 A1
+A5 -> A5 A5 | V A6
+A6 -> =
+A7 -> A7 A7 | V A8
+A8 -> A9 A6
+A9 -> + | - | / | * | % | & | | | ^ | B8 B8 | B9 B9 | B10 B10 | B11 B11 | B12 B12
