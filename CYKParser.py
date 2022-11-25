@@ -1,5 +1,8 @@
 Prod = {
-
+    "B" : [["E", "B1"]],
+	"B1" : [["O2", "B"], ["O2", "E"]],
+	"E" : [["1"], ["2"], ["3"]],
+	"O2" : [["+"], ["-"]]
 }
 
 def CYKParse(w):
@@ -27,7 +30,19 @@ def CYKParse(w):
                 for l, r in Prod.items():
                     for deriv in r:
                         if((len(deriv) == 2) and (deriv[0] in Tab[j][k]) and (deriv[1] in Tab[j+1+k][i-k-1])):
-                            Tab[i][j].add(l)
+                            Tab[j][i].add(l)
 
+    for i in range (n) :
+        for j in range (n-i) :
+            if Tab[i][j] == set([]) :
+                print("--", end = '  ')
+            else :
+                print(Tab[i][j], end = '  ')
+        print()
     # Return variabel yang menghasilkan w; V *-> w
     return Tab[0][n-1]
+
+if __name__ == "__main__" :
+    w = "1 + 1".split()
+    print(w)
+    print(CYKParse(w))

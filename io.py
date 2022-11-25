@@ -29,29 +29,29 @@ def fileToLines(fileName) :
         print("\nFile Tidak Ditemukan!\n")
         return False
 
-def convertLineToList(line) :
-    buffer = []
-    word = ""
-    for char in line :
-        if (char not in ignore) :
-            if (char != '{' and char != '}') :
-                word += char
-            else :
-                buffer.append(word)
-                word = ""
-                buffer.append(char)
-        else :
-            if (len(word) == 0) :
-                continue
-            else :
-                buffer.append(word)
-                word = ""
-    return buffer
+# def convertLineToList(line) :
+#     buffer = []
+#     word = ""
+#     for char in line :
+#         if (char not in ignore) :
+#             if (char != '{' and char != '}') :
+#                 word += char
+#             else :
+#                 buffer.append(word)
+#                 word = ""
+#                 buffer.append(char)
+#         else :
+#             if (len(word) == 0) :
+#                 continue
+#             else :
+#                 buffer.append(word)
+#                 word = ""
+#     return buffer
 
 
 
 if __name__ == "__main__" :
-    text = fileToLines("inputAcc.js")
+    text = fileToLines("test.js")
     # w = "function foo(x) { \n {x = 1} \n}"
     # print(w)
     # print(convertLineToList(w))
