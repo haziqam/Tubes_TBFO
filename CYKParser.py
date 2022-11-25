@@ -1,5 +1,5 @@
 Prod = {
-    
+
 }
 
 def CYKParse(w):
@@ -26,7 +26,8 @@ def CYKParse(w):
             for k in range(i):
                 for l, r in Prod.items():
                     for deriv in r:
-                        if((len(deriv) == 2) and (deriv[0] in Tab[j][k]) and (deriv[1] in Tab[j+1+k][i-k-1]))
+                        if((len(deriv) == 2) and (deriv[0] in Tab[j][k]) and (deriv[1] in Tab[j+1+k][i-k-1])):
+                            Tab[i][j].add(l)
 
     # Return variabel yang menghasilkan w; V *-> w
     return Tab[0][n-1]
